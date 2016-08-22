@@ -8,7 +8,7 @@ I wanted something just a little bit more than Backbone views, but without the r
 # Example
 ```coffee
 # Create a wrapper
-standard: ()->
+Cmp::createClass 'standard', ()->
 	@$el = $(Template['layout/standard.html']())
 	$('body').append @$el
 
@@ -35,6 +35,10 @@ Cmp::createClass 'site_user_standard', ()->
 Cmp::createClass 'about', ()->
 	@require('site_standard')
 	@el_attached_wrap Template['site/about.html']()
+
+	@events.push
+		name:'click', target:@$el, selecter:'div', fn:(e)->
+			alert('You clicked a div within the about component!')
 
 # instantiate a singleton exclusive component
 Cmps.page('about')
