@@ -8,18 +8,17 @@ I wanted something just a little bit more than Backbone views, but without the r
 # Example
 ```coffee
 # Create a wrapper
+standard: ()->
+	@$el = $(Template['layout/standard.html']())
+	$('body').append @$el
+
+# Create a wrapper that uses another wrapper
 Cmp::createClass 'site_standard', ()->
 	@require('standard')
 
 	$shadow = $('<div id="h1_shadow"></div>')
 	$('#h1').after($shadow)
 	@$els.push $shadow
-
-	###
-	$logo = $('<a href="/"><img src="/public/img/s_logo_combined.png"></a>')
-	$('#h1').append $logo
-	@$els.push $logo
-	###
 
 	$links = $(Template['component/header.html']())
 	$('#h1').append $links
